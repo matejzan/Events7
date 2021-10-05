@@ -22,7 +22,7 @@ export class DashboardEventsViewComponent implements OnInit {
 
   eventToDelete: DocumentData = {};
 
-  eventTypes = ['all', 'app', 'adds', 'crosspromo', 'devops'];
+  eventTypes = ['all', 'app', 'ads', 'crosspromo', 'liveops'];
 
   chosenEventType = 'all';
 

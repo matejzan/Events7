@@ -161,16 +161,16 @@ button {
   border: 1px solid rgba($app-label, 0.1) !important;
 }
 
-.adds {
-  background: rgba($adds-label, 0.1) !important;
-  color: $adds-label;
-  border: 1px solid rgba($adds-label, 0.1) !important;
+.ads {
+  background: rgba($ads-label, 0.1) !important;
+  color: $ads-label;
+  border: 1px solid rgba($ads-label, 0.1) !important;
 }
 
-.devops {
-  background: rgba($devops-label, 0.1) !important;
-  color: $devops-label;
-  border: 1px solid rgba($devops-label, 0.1) !important;
+.liveops {
+  background: rgba($liveops-label, 0.1) !important;
+  color: $liveops-label;
+  border: 1px solid rgba($liveops-label, 0.1) !important;
 }
 
 .crosspromo {
@@ -185,10 +185,10 @@ button {
   color: $red-main;
 }
 
-.adds-bordered {
+.ads-bordered {
   background: none !important;
-  border: 1px solid $adds-label;
-  color: $adds-label;
+  border: 1px solid $ads-label;
+  color: $ads-label;
 }
 
 .app-bordered {
@@ -197,10 +197,10 @@ button {
   color: $app-label;
 }
 
-.devops-bordered {
+.liveops-bordered {
   background: none !important;
-  border: 1px solid $devops-label;
-  color: $devops-label;
+  border: 1px solid $liveops-label;
+  color: $liveops-label;
 }
 
 .crosspromo-bordered {

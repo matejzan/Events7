@@ -52,11 +52,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(100% - 428px);
-  height: 300px;
+  width: calc(100% - 364px);
+  height: 500px;
   background: rgba(white, 1);
   z-index: 5;
-  margin-left: 32px;
+  margin-left: -32px;
 }
 
 .dashboard-events-details {
@@ -132,7 +132,7 @@
   }
 
   .dashboard-events-loader {
-    width: calc(100% - 128px);
+    width: 100%;
   }
 }
 
@@ -147,7 +147,7 @@
   }
 
   .dashboard-events-loader {
-    margin-left: 0;
+    margin-left: -32px;
   }
 }
 
@@ -158,7 +158,7 @@
   }
 
   .dashboard-events-loader {
-    width: calc(100% - 64px);
+    width: 100%;
   }
 }
 
@@ -168,7 +168,8 @@
   }
 
   .dashboard-events-loader {
-    width: 90%;
+    width: 100%;
+    margin-left: -5%;
   }
 
   .dashboard-events-info {

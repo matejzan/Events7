@@ -17,6 +17,7 @@
   height: 100%;
   background: rgba(white, 0.5);
   z-index: 5;
+  margin-left: -64px;
 }
 
 .dashboard-events-edit {
@@ -295,12 +296,20 @@
   :host {
     padding-right: 64px;
   }
+
+  .dashboard-events-loader {
+    margin-left: -32px;
+  }
 }
 
 @media (max-width: 991px) {
   :host {
     padding-right: 32px;
     padding-left: 32px;
+  }
+
+  .dashboard-events-loader {
+    margin-left: -32px;
   }
 }
 
@@ -316,5 +325,9 @@
   .dashboard-events-edit-form-actions button {
     width: calc(50% - 4px);
     min-width: 0;
+  }
+
+  .dashboard-events-loader {
+    margin-left: -16px;
   }
 }

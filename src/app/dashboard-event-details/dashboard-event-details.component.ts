@@ -59,6 +59,7 @@ export class DashboardEventDetailsComponent implements OnInit {
       }
     } else {
       window.alert("Event does not exist!")
+      this.router.navigate(['dashboard/events']);
     }
     this.fetchingEvent = false;
     if (this.event.related_events.length) {

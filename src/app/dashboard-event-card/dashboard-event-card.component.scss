@@ -23,6 +23,7 @@
   background: red;
   padding: 4px 12px;
   font-weight: 700;
+  margin-left: 8px;
 }
 
 .dashboard-events-card-title-description {
@@ -34,7 +35,7 @@
   h3 {
     width: 70%;
     color: $text-dark-gray;
-    margin: 0 0 0.5em;
+    margin: 0 0 0.8em;
   }
 
   p {
@@ -108,5 +109,10 @@
 @media (max-width: 480px) {
   :host {
     padding: 12px;
+  }
+
+  .dashboard-events-card-title-description h3 {
+    width: 50%;
+    font-size: 20px;
   }
 }

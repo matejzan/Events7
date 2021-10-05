@@ -32,7 +32,7 @@ export class DashboardEventEditComponent implements OnInit {
 
   formValid = false;
 
-  eventTypes = ['app', 'adds', 'crosspromo', 'devops'];
+  eventTypes = ['app', 'ads', 'crosspromo', 'liveops'];
 
   fetchingRelatedEvents = false;
 
@@ -165,6 +165,7 @@ export class DashboardEventEditComponent implements OnInit {
       })
     } else {
       window.alert("Event does not exist!")
+      this.router.navigate(['dashboard/events']);
     }
     this.fetchingEvent = false;
     this.getGoBackData();
