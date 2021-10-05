@@ -1,0 +1,161 @@
+<button 
+  class="button-primary mobile-only"
+  (click)="openLoginCard()"
+>
+  Login
+</button>
+<button 
+  class="button-secondary mobile-only"
+  (click)="openRegisterCard()"
+>
+  Register
+</button>
+
+<div 
+  class="welcome-screen-login-register-card"
+  [ngClass]="cardOpen ? 'card-open' : 'null'"
+>
+  <div 
+    class="welcome-screen-login-register-card-close"
+    (click)="closeCard()"
+  >
+    <mat-icon 
+      svgIcon="close-icon" 
+      aria-hidden="false"
+    ></mat-icon>
+  </div>
+  <div 
+    class="welcome-screen-login-register-card-login-wrapper" 
+    *ngIf="welcomeAction==='login'"
+  >
+    <h1>Login</h1>
+    <form 
+      [formGroup]="loginForm" 
+      #formDir="ngForm"
+      (keyup)="handleKeyUp($event, 'login')"
+    >
+      <div class="welcome-screen-login-register-card-input-wrapper">
+        <input 
+          type="text" 
+          formControlName="email"
+          placeholder="Email"
+        >
+        <mat-icon 
+          svgIcon="email-icon" 
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <div class="welcome-screen-login-register-card-input-wrapper">
+        <input 
+          type="password" 
+          formControlName="password"
+          placeholder="Password"
+        >
+        <mat-icon 
+          svgIcon="password-icon" 
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+    </form>
+    <button 
+      class="button-primary"
+      (click)="login()"
+    >
+      <span *ngIf="!loginFormLoading">Login</span>
+      <mat-spinner 
+        diameter="26" 
+        *ngIf="loginFormLoading"
+      ></mat-spinner>
+    </button>
+    <div class="form-error login">{{loginError}}</div>
+    <p>No account yet? <b (click)="changeView('register')">Register!</b></p>
+  </div>
+
+  <div 
+    class="welcome-screen-login-register-card-register-wrapper" 
+    *ngIf="welcomeAction==='register'"
+  >
+    <h1>Register</h1>
+    <form 
+      [formGroup]="registerForm" 
+      #formDir="ngForm"
+      (keyup)="handleKeyUp($event, 'register')"
+    >
+      <div class="welcome-screen-login-register-card-input-wrapper">
+        <input 
+          type="text" 
+          formControlName="fullName"
+          placeholder="Full name"
+        >
+        <mat-icon 
+          svgIcon="name-icon" 
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <div 
+        *ngIf="fullName&&fullName.touched&&fullName.errors&&fullName.errors.required"
+        class="form-error"
+      >
+        Full name is required.
+      </div>
+      <div class="welcome-screen-login-register-card-input-wrapper">
+        <input 
+          type="text" 
+          formControlName="registerEmail"
+          placeholder="Email"
+          required
+        >
+        <mat-icon 
+          svgIcon="email-icon" 
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <div 
+        *ngIf="registerEmail&&registerEmail.touched&&registerEmail.errors"
+        class="form-error"
+      >
+        <div *ngIf="registerEmail.errors.required">
+          Email address is required.
+        </div>
+        <div *ngIf="registerEmail.errors.email">
+          Please provide a valid email address.
+        </div>
+      </div>
+      <div class="welcome-screen-login-register-card-input-wrapper">
+        <input 
+          type="password" 
+          formControlName="registerPassword"
+          placeholder="Password"
+        >
+        <mat-icon 
+          svgIcon="password-icon" 
+          aria-hidden="false"
+        ></mat-icon>
+      </div>
+      <div 
+        *ngIf="registerPassword&&registerPassword.touched&&registerPassword.errors"
+        class="form-error"
+      >
+        <div *ngIf="registerPassword.errors.required">
+          Password is required.
+        </div>
+        <div *ngIf="registerPassword.errors.minlength">
+          Password must be at least 8 characters long.
+        </div>
+      </div>
+    </form>
+    <button 
+      class="button-primary"
+      [disabled]="registerForm.invalid"
+      (click)="register()"
+    >
+      <span *ngIf="!registerFormLoading">Register</span>
+      <mat-spinner 
+        diameter="26" 
+        *ngIf="registerFormLoading"
+      ></mat-spinner>
+    </button>
+    <div class="form-error login">{{registerError}}</div>
+    <p>Already have an account? <b (click)="changeView('login')">Login!</b></p>
+  </div>
+</div>

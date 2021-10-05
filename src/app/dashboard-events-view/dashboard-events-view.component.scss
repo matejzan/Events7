@@ -1,0 +1,177 @@
+@import "../../variables";
+
+:host {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  padding: 32px 364px 64px 64px; 
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  h2 {
+    margin: 0;
+  }
+
+  p {
+    margin-top: 24px;
+  }
+}
+
+.dashboard-events-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  border-radius: 10px;
+  z-index: 6;
+  position: sticky;
+  top: -36px;
+  margin: 32px 0;
+  padding: 16px;
+  flex-wrap: wrap;
+  background: white;
+  box-shadow: $card-shadow;
+
+  button {
+    font-weight: 700;
+    width: 30%;
+    max-width: 360px;
+    margin-top: 0;
+    line-height: 25px;
+    padding: 0.7em;
+
+    span {
+      margin-left: 6px;
+    }
+  }
+}
+
+.dashboard-events-filters-sort {
+  width: 70%;
+
+  span {
+    color: $text-medium-gray;
+  }
+}
+
+.dashboard-events-filters-types {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.dashboard-events-filters-type {  
+  padding: 4px 12px;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 10px;
+  margin: 6px 12px 6px 0;
+  cursor: pointer;
+}
+
+.dashboard-events-loader {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 64px;
+}
+
+.dashboard-events-cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% + 64px);
+  margin: 32px -32px;  
+
+  p {
+    color: $text-medium-gray;
+    margin-left: 32px;
+    width: 100%;
+  }
+
+  b {
+    color: $red-main;
+    cursor: pointer;
+    
+    &:hover {
+      color: darken($red-main, 5);
+    };
+  }
+}
+
+@media (max-width: 1440px) {
+  :host {
+    padding-right: 64px;
+  }
+}
+
+@media (max-width: 991px) {
+  :host {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .dashboard-events-cards {
+    width: 100%;
+    margin: 32px 0;
+
+    p {
+      margin-left: 0;
+    }
+  }
+
+  .dashboard-events-card {
+    width: 100%;
+    margin: 32px 0;
+  }
+
+  .dashboard-events-filters {  
+    flex-direction: column;
+    p {
+      width: 100%;
+    }
+  
+    button {
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 16px;
+    }
+  }
+
+  .dashboard-events-filters-sort {
+    width: 100%;
+  }
+}
+
+@media (max-width: 766px) {
+  :host {
+    padding: 48px 5% 100px;
+    height: auto;
+  }
+
+  .dashboard-events-filters {  
+    flex-direction: column;
+    position: static;
+    align-items: flex-end;
+    p {
+      width: 100%;
+    }
+  
+    button {
+      width: 100%;
+      max-width: 200px;
+      margin-top: 16px;
+      position: fixed;
+      z-index: 5;
+      bottom: 90px;
+      right: 5%;
+      padding: 0.5em;
+      font-size: 14px;
+    }
+  }
+
+  .dashboard-events-info-divider {
+    display: none;
+  }
+}

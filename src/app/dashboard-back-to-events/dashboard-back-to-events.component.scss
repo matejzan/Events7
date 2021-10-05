@@ -1,0 +1,18 @@
+@import '../../variables';
+
+.dashboard-back {
+  display: flex;
+  color: $text-medium-gray;
+  cursor: pointer;
+  justify-content: flex-start;
+  transition: transform 0.2s, opacity 0.7s;
+  margin-bottom: 32px;
+
+  span {
+    margin-left: 6px;
+  }
+
+  &:hover {
+    transform: translateX(-5px);
+  }
+}

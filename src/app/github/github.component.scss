@@ -1,0 +1,43 @@
+@import "../../variables";
+
+:host {
+  position: relative;
+  width: 100%;
+  padding: 32px 364px 64px 64px; 
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  h2 {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    color: $text-medium-gray;
+  }
+
+  a {
+    color: $red-main;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 1440px) {
+  :host {
+    padding-right: 64px;
+  }
+}
+
+@media (max-width: 991px) {
+  :host {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+}
+
+@media (max-width: 766px) {
+  :host {
+    padding: 48px 5% 100px;
+  }
+}

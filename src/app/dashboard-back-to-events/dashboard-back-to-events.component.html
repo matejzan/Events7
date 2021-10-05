@@ -1,0 +1,11 @@
+<div 
+  (click)="back()"
+  class="dashboard-back"
+  [style.opacity]="hidden ? 0 : 1"
+>
+  <mat-icon 
+    svgIcon="back-icon" 
+    aria-hidden="false"
+  ></mat-icon>
+  <span>Back to {{routeName}}</span>
+</div>

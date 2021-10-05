@@ -1,0 +1,35 @@
+@import "../../variables";
+
+:host {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-logout {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  cursor: pointer;
+
+  &:hover p {
+    color: $red-main;
+  }
+
+  p {
+    color: $text-medium-gray;
+    margin-left: 8px;
+    transition: 0.1s;
+  }
+}
+
+@media (max-width: 766px) {
+  .dashboard-logout {
+    position: absolute;
+    top: 22px;
+    right: 5%;
+    left: auto;
+    bottom: auto;
+  }
+}

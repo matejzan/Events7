@@ -1,0 +1,45 @@
+<h2>About</h2>
+<p>
+  Events7 is a web application created for the "Software Engineer Expertise Test" by Matej Žan 
+  to participate in the selection process for a Frontend Developer position at Outfit7.
+  The app itself is a tool to define the events the Analytics team would like to track.
+</p>
+<h3>The process</h3>
+<h4>Design</h4>
+<p>
+  After a few minutes of initial planning I started working on the design using Adobe InDesign. 
+  As this is usually the part I don't really enjoy, I set a goal to create a design that could work in less then 5 hours.
+  To be as productive as possible I chose a simple colour pallete and tried to keep the design as simple as possible.
+  While I wasn't very satisfied with the created design I think it started working well once the features were being developed and implemented. 
+</p>
+<h4>Development</h4>
+<p>
+  Event7 is created using Angular using Google Firebase for the back-end (authentication and database).
+  As both of those were new to me I wasn't really sure what problems I could face during the development.
+  As it turned out, not too many! :)
+  Having experience with reactive frameworks (React and Vue.js) Angular was mainly not too hard to pick up.
+  I solved most of the problems with reading the documentation and a few with looking them up on StackOverFlow.
+  As for Firebase, the authentication process was a no-brainer, while it took me a while for my brain to "switch"
+  from relational database system to a NoSql document database system.<br><br><br>
+  All of the UI components, except for the icons and the animated loader are created from scratch. 
+  While this is the type of an app that would mostly be used on desktop, I spent some time to make it as good looking as possible on mobile devices too.
+  The app was being tested on Chrome, Firefox and Safari.<br><br><br>
+  There were some situations where I spent a bit of time deciding. The first one was whether to paginate events or fetch them all at the same time.
+  Having pretty much finished developing the solution with pagination, I took a step back and realized I don't think it's the most appropriate one.
+  We all know the benefits of paginating data, but I belive this app was not designed for defining a large number of events. 
+  If the app was designed to track events in multiple destinations, the situation would be different for sure.
+  I belive choosing this approach added more consistency to the user experience.<br><br>
+  The second one I would like to point out is data transfering through app - whether to fetch the event(s) in every view, or pass data thought views.
+  I ended up doing both to learn and discover them: <br>
+  - The events view fetches the events on every update (switching to the view, sorting events based on event type).<br>
+  - The edit event view fetched the event based on url parameters.<br>
+  - The event details view includes both options. If you navigate to the event details with a click on the event card in the events view/event details related events,
+  the event data is passed with Router (which uses window history state). If you directly access the link though the browser, the data is fetched from the database.
+  While the method with passing data with Router isn't elegant code-wise, I managed to get it working consistently even with navigating with browser history functions.<br><br>
+  Now that I have discovered the Angular basics of data management, I would definitely use a data/store management library next time to create an even better experience.<br><br><br>
+  <b>The development process, I must say, was a fun one.</b>
+</p>
+<h4>DEPLOYMENT</h4>
+<p>
+  The app is deployed on the Firebase hosting with litteraly only executing one command.
+</p>

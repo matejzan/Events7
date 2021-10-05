@@ -1,0 +1,82 @@
+<app-dashboard-back-to-events 
+  [route]="'dashboard/events'"
+  [routeName]="'events'"
+></app-dashboard-back-to-events>
+<div class="dashboard-events-info">
+  <h2>Event details</h2>
+  <div class="dashboard-events-actions">
+    <button [routerLink]="['../../edit-event', 'event-'+(event.id), {back: 'details'}]">
+      <mat-icon 
+        svgIcon="edit-icon" 
+        aria-hidden="false"
+      ></mat-icon>
+      <span>Edit event</span>
+    </button>
+    <button (click)="openDeleteEventDialog()">
+      <mat-icon 
+        svgIcon="delete-icon" 
+        aria-hidden="false"
+      ></mat-icon>
+      <span>Delete event</span>
+    </button>
+  </div>
+</div>
+<div 
+  *ngIf="fetchingEvent"
+  class="dashboard-events-loader"
+>
+  <mat-spinner 
+      diameter="40" 
+      class="red-spinner"
+  ></mat-spinner>
+</div>
+<div 
+  class="dashboard-events-details" 
+  *ngIf="event"
+>
+  <div class="dashboard-events-details-card">
+    <h3>{{event.name}}</h3>
+    <p>{{event.description}}</p>
+    <div class="dashboard-events-details-card-type">
+      <span>Event type:</span>
+      <div 
+        class="dashboard-events-details-card-label"
+        [ngClass]="event.type"
+      >
+        {{event.type}}
+      </div>
+    </div>
+    <p>
+      <span>Priority: </span>
+      {{event.priority}}
+    </p>
+  </div>
+</div>
+<div class="dashboard-events-details-related-events">
+  <h2>Related Events</h2>
+  <div 
+    *ngIf="fetchingRelatedEvents"
+    class="dashboard-events-loader"
+  >
+    <mat-spinner 
+        diameter="40" 
+        class="red-spinner"
+    ></mat-spinner>
+  </div>
+  <p *ngIf="!relatedEvents.length">This event has no related events.</p>
+  <app-dashboard-event-card
+    *ngFor="let relatedEvent of relatedEvents"
+    [event]=relatedEvent
+    [cardType]="'relatedEvent'"
+    (click)=openEventCardDetails(relatedEvent)
+  >
+  </app-dashboard-event-card>
+</div>
+<app-dashboard-event-delete-dialog
+  [deleteEventDialogOpen]=deleteEventDialogOpen
+  [eventToDelete]=event
+  (deleteDialogClose)=eventDeleteDialogClosed()
+  (eventDeleted)=eventDeleted()
+>
+</app-dashboard-event-delete-dialog>
+  

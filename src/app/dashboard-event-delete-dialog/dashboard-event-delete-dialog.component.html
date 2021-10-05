@@ -1,0 +1,35 @@
+<app-dialog
+  [dialogOpen]=deleteEventDialogOpen
+  [closeDialogFromParentComponent]=closeDialogFromParentComponent
+  (dialogClose)="dialogClose()"
+>
+  <div class="dashboard-events-delete-dialog">
+    <div 
+      *ngIf="deletingEvent"
+      class="dashboard-events-delete-loader"
+    >
+      <mat-spinner 
+          diameter="40" 
+          class="red-spinner"
+      ></mat-spinner>
+    </div>
+    <div class="dashboard-events-delete-dialog-info">
+      <h2>Are you sure?</h2>
+      <p>After deleting this event you will not be able to restore it.</p>
+    </div>
+    <div class="dashboard-events-delete-dialog-actions">
+      <button 
+        class="button-no-background"
+        (click)="closeDeleteEventDialog()"
+      >
+        Cancel
+      </button>
+      <button 
+        class="button-primary"
+        (click)="deleteEvent()"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</app-dialog>

@@ -1,0 +1,21 @@
+@import "../../variables";
+
+:host {
+  display: flex;
+  position: relative;
+  min-height: 100vh;
+  width: calc(100% - 300px);
+  box-sizing: border-box;
+}
+
+@media (max-width: 1280px) {
+  :host {
+    width: calc(100% - 220px);
+  }
+}
+
+@media (max-width: 766px) {
+  :host {
+    width: 100%;
+  }
+}

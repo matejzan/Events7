@@ -1,0 +1,60 @@
+@import '../../variables';
+
+.dashboard-events-delete-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+}
+
+.dashboard-events-delete-loader {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(white, 0.5);
+  z-index: 5;
+}
+
+.dashboard-events-delete-dialog-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+
+  h2 {
+    font-size: 22px;
+    margin: 0 0 8px;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-medium-gray;
+  }
+}
+
+.dashboard-events-delete-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+
+  button {
+    padding: 0.7em;
+    min-width: 120px;
+    font-weight: 700;
+  }
+}
+
+.button-no-background {
+  background: none;
+  border: none;
+  color: $red-main;
+
+  &:hover {
+    color: darken($red-main, 5);
+  }
+}

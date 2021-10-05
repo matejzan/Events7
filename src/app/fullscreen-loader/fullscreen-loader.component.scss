@@ -1,0 +1,14 @@
+@import "../../variables";
+
+.fullscreen-loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  opacity: 1;
+  transition: 0.5s;
+}

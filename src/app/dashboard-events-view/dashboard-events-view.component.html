@@ -1,0 +1,63 @@
+<h2>Events</h2>
+<p>See all the events you and your team have created by now! To see all of the event's details click on the card below.</p>
+<div class="dashboard-events-filters">
+  <div class="dashboard-events-filters-sort">
+    <span>EVENT TYPES: </span>
+    <div class="dashboard-events-filters-types">        
+      <div 
+        class="dashboard-events-filters-type event-type-unchecked"
+        [ngClass]="chosenEventType===type ? type : type+'-bordered'"
+        *ngFor="let type of eventTypes"
+        (click)="showEventType(type)"
+      >
+        {{type}}
+      </div>
+    </div>
+  </div>
+  <button 
+    class="button-primary" 
+    routerLink="../add-new-event"
+  >
+    <mat-icon 
+      svgIcon="add-icon" 
+      aria-hidden="false"
+    ></mat-icon>
+    <span>Add new event</span>
+  </button>
+</div>
+<div 
+  class="dashboard-events-loader"
+  *ngIf="fetchingEvents"
+>
+  <mat-spinner 
+      diameter="40" 
+      class="red-spinner"
+  ></mat-spinner>
+</div>
+<div 
+  class="dashboard-events-cards"
+  *ngIf="!fetchingEvents"
+>
+  <p *ngIf="!fetchedEvents.length&&!fetchingEvents&&chosenEventType==='all'">
+    No events yet. 
+    <b routerLink="../add-new-event">Create some!</b>
+  </p>
+  <p *ngIf="fetchedEvents.length||chosenEventType!=='all'">
+    Showing {{fetchedEvents.length}} {{fetchedEvents.length === 1 ? 'result' : 'results'}}
+  </p>
+  <app-dashboard-event-card 
+    *ngFor="let event of fetchedEvents"
+    [event]=event
+    [cardType]="'eventFull'"
+    (openDeleteEventDialog)=openDeleteEventDialog(event)
+    (click)="openEventCardDetails($event, event)"
+  >
+  </app-dashboard-event-card>
+</div>
+<app-dashboard-event-delete-dialog
+  [deleteEventDialogOpen]=deleteEventDialogOpen
+  [eventToDelete]=eventToDelete
+  (deleteDialogClose)=eventDeleteDialogClosed(false)
+  (eventDeleted)=eventDeleteDialogClosed(true)
+>
+</app-dashboard-event-delete-dialog>

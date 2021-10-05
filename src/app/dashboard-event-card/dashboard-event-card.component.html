@@ -1,0 +1,43 @@
+<div 
+  class="dashboard-events-card-type"
+  [ngClass]="event.type"
+>
+  {{event.type}}
+</div>
+<div class="dashboard-events-card-title-description">
+  <h3>
+    {{event.name}}
+  </h3>
+  <p>
+    {{event.description}}
+  </p>
+</div>
+<div 
+  class="dashboard-events-card-details-actions-wrapper"
+  *ngIf="cardType==='eventFull'"
+>
+  <div class="dashboard-events-card-details">
+    <p>
+      <span>Priority: </span>
+      {{event.priority}}
+    </p>
+    <p>
+      <span>Related events: </span>
+      {{event.related_events.length}}
+  </p>
+  </div>
+  <div class="dashboard-events-card-actions">
+    <button [routerLink]="['../edit-event', 'event-'+(event.id)]">
+      <mat-icon 
+        svgIcon="edit-icon" 
+        aria-hidden="false"
+      ></mat-icon>
+    </button>
+    <button (click)="openDialog(event)">
+      <mat-icon 
+        svgIcon="delete-icon" 
+        aria-hidden="false"
+      ></mat-icon>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div 
+  id="dialog"
+  class="dialog"
+  [style.zIndex]="zIndexDialogOpen ? '30' : '-1'"
+  [style.opacity]="opacityDialogOpen ? '1' : '0'"
+  (click)="closeOutsideClick($event)"
+>
+  <div class="dialog-content">
+    <div 
+      class="dialog-close"
+      (click)="closeDialog()"
+    >
+      <mat-icon 
+        svgIcon="close-icon"
+        aria-hidden="false"
+      ></mat-icon>
+    </div>
+    <ng-content></ng-content>
+  </div>
+</div>

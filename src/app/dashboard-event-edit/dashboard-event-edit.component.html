@@ -1,0 +1,163 @@
+<app-dashboard-back-to-events 
+  [route]="backRoute"
+  [routeName]="backText"
+  [hidden]="!backRoute.length"
+></app-dashboard-back-to-events>
+<h2>{{editingEvent ? 'Edit event' : 'Add new event'}}<h2>
+<div class="dashboard-events-edit">
+  <div class="dashboard-events-edit-form">
+    <div 
+      *ngIf="savingEvent||fetchingEvent"
+      class="dashboard-events-loader"
+    >
+      <mat-spinner 
+          diameter="40" 
+          class="red-spinner"
+      ></mat-spinner>
+    </div>
+    <form 
+      [formGroup]="eventEditForm" 
+      #formDir="ngForm"
+    >
+      <div class="dashboard-events-edit-form-wrapper">
+        <label>Event name</label>
+        <input 
+          type="text" 
+          formControlName="eventName"
+          (keyup)="validateEventName()"
+        >
+        <div class="form-error">
+          {{formErrors.eventNameError}}
+        </div>
+      </div>
+      <div class="dashboard-events-edit-form-wrapper">
+        <label>Event description (max. 1000 characters)</label>
+        <textarea 
+          formControlName="eventDescription"
+          maxlength="1000"
+          rows="6"
+          (keyup)="validateEventDescription()"
+        ></textarea>
+        <div class="form-error">
+          {{formErrors.eventDescriptionError}}
+        </div>
+      </div>
+      <div class="dashboard-events-edit-form-wrapper">
+        <label>Event type</label>
+        <div class="dashboard-events-edit-form-types">        
+          <div 
+            class="dashboard-events-edit-form-type event-type-unchecked"
+            [ngClass]="eventData.eventType===type ? type : type+'-bordered'"
+            *ngFor="let type of eventTypes"
+            (click)="setEventTypeChecked(type)"
+          >
+            {{type}}
+          </div>
+        </div>
+        <div class="form-error">
+          {{formErrors.eventTypeError}}
+        </div>
+      </div>
+      <div class="dashboard-events-edit-form-wrapper">
+        <label>Event priority (1-10)</label>
+        <div class="dashboard-events-edit-form-priority">
+          <div 
+            class="dashboard-events-edit-form-priority-action"
+            (click)="decreasePriority()"
+          >
+            <mat-icon 
+              svgIcon="minus-icon" 
+              aria-hidden="false"
+            ></mat-icon>
+          </div>
+          <div class="dashboard-events-edit-form-priority-value">
+            {{eventData.eventPriority}}
+          </div>
+          <div 
+            class="dashboard-events-edit-form-priority-action"
+            (click)="increasePriority()"
+          >
+            <mat-icon 
+              svgIcon="plus-icon" 
+              aria-hidden="false"
+            ></mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-events-edit-form-related-events">
+        <label>Related events (optional)</label>
+        <p>{{eventData.relatedEvents.length}} related events selected</p>
+        <div class="dashboard-events-edit-form-related-events-select">
+          <p (click)="openRelatedEventsDialog()">Select related events</p>
+        </div>
+      </div>
+      <div class="dashboard-events-edit-form-actions">
+        <button 
+          class="button-secondary"
+          (click)="goBack()"
+        >
+          Back
+        </button>
+        <button 
+          class="button-primary"
+          (click)="saveEvent()"
+        >
+          {{editingEvent ? 'Save' : 'Create'}}
+        </button>      
+      </div>
+    </form>
+  </div>
+</div>
+<app-dialog
+  [dialogOpen]=relatedEventsDialogOpen
+  (dialogClose)="dialogClose()"
+>
+  <div class="dashboard-events-edit-form-related-events-dialog">
+    <div 
+      *ngIf="fetchingRelatedEvents"
+      class="dashboard-events-loader"
+    >
+      <mat-spinner 
+          diameter="40" 
+          class="red-spinner"
+      ></mat-spinner>
+    </div>
+    <div class="dashboard-events-edit-form-related-events-info">
+      <h2>Related events</h2>
+      <p>Showing {{relatedEventsCandidates.length}} {{relatedEventsCandidates.length === 1 ? 'result' : 'results'}}.</p>
+    </div>
+    <div class="dashboard-events-edit-form-related-events-cards">
+      <div 
+        *ngFor="let candidate of relatedEventsCandidates"
+        class="dashboard-events-edit-form-related-events-card"
+        [ngClass]="eventData.relatedEvents.includes(candidate.id) ? 'card-selected' : ''"
+        (click)="selectRelatedEvent(candidate.id)"
+      >
+        <div class="dashboard-events-edit-form-related-events-card-check">
+          <div 
+            class="dashboard-events-edit-form-related-events-card-check-box"
+            [ngClass]="eventData.relatedEvents.includes(candidate.id) ? 'checkbox-selected' : ''"
+          >
+            <mat-icon 
+              svgIcon="check-icon" 
+              aria-hidden="false" 
+              style="margin-top: -12px"
+            ></mat-icon>
+          </div>
+        </div>
+        <div class="dashboard-events-edit-form-related-events-card-name">
+          <p>Event name:</p>
+          <h2>{{candidate.name}}</h2>
+        </div>
+        <div class="dashboard-events-edit-form-related-events-card-types">
+          <div 
+            class="dashboard-events-edit-form-related-events-card-type"
+            [ngClass]="candidate.type"
+          >
+            {{candidate.type}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-dialog>

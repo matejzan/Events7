@@ -1,0 +1,112 @@
+@import "../../variables";
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: calc(50% - 64px);
+  margin: 24px 32px;
+  background: white;
+  box-shadow: $button-shadow;
+  padding: 16px;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.dashboard-events-card-type {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border-radius: 10px;
+  background: red;
+  padding: 4px 12px;
+  font-weight: 700;
+}
+
+.dashboard-events-card-title-description {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+
+  h3 {
+    width: 70%;
+    color: $text-dark-gray;
+    margin: 0 0 0.5em;
+  }
+
+  p {
+    width: 100%;
+    position: relative;
+    color: $text-medium-gray;
+    overflow: hidden;
+    white-space: nowrap;  
+    text-overflow: ellipsis;
+    height: 1.35em;
+    margin-left: 0;
+  }
+}
+
+.dashboard-events-card-details-actions-wrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-top: 24px;
+}
+
+.dashboard-events-card-details {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+
+  p {
+    color: $text-medium-gray;
+    margin: 8px 0 0;
+  }  
+
+  span {
+    color: $text-dark-gray;
+  }
+}
+
+.dashboard-events-card-actions {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+
+  button {
+    background: #f2f2f2;
+    border-radius: 10px;
+    width: 60px;
+    min-width: 0;
+    height: 40px;
+    border: 0;
+    padding: 0;
+    transition: 0.1s;
+
+    &:first-child {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      background: darken(#f2f2f2, 5);
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  :host {
+    width: 100%;
+    margin: 16px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    padding: 12px;
+  }
+}

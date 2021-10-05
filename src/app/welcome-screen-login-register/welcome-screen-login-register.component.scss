@@ -1,0 +1,150 @@
+@import "../../variables";
+
+:host {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center;
+  padding-left: 128px;
+  box-sizing: border-box;
+
+  button {
+    width: 90%;
+    font-weight: 700;
+  }
+}
+
+.welcome-screen-login-register-card {
+  width: 100%;
+  transition: 0.3s;
+}
+
+.welcome-screen-login-register-card-close {
+  display: none;
+  position: absolute;
+  right: 5%;
+  top: 16px;
+  cursor: pointer;
+}
+
+.welcome-screen-login-register-card-login-wrapper, .welcome-screen-login-register-card-register-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 32px 32px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: $card-shadow;
+
+  h1 {
+    color: $red-main;
+    margin-bottom: 32px;
+  }  
+
+  p {
+    margin-top: 72px;
+  }
+
+  b {
+    color: $red-main;
+    cursor: pointer;
+  }
+
+  button {
+    width: 100%;
+    font-weight: 700;
+    padding: 0;
+    min-height: 52px;
+    align-items: center;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+
+      &:hover {
+        background: $red-main;
+      }
+    }
+  }
+}
+
+.welcome-screen-login-register-card-input-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  mat-icon {
+    position: absolute;
+    left: 8px;
+  }
+
+  input {
+    padding-left: 42px;
+  }
+}
+
+.form-error {
+  font-size: 13px;
+  color: red;
+}
+
+.login {
+  margin-top: 16px;
+  height: 15px;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  :host {
+    padding-left: 48px;
+  }
+}
+
+@media (max-width: 1023px) {
+  :host {
+    padding-left: 32px;
+  }
+}
+
+@media (max-width: 766px) {
+  :host {
+    height: auto;
+    width: 100%;
+    padding-left: 0;
+
+    button {
+      &:nth-child(2) {
+        margin-bottom: 16px;
+      }
+    }
+  }
+
+  .welcome-screen-login-register-card {
+    position: absolute;
+    bottom: 0;
+    height: 0;
+  }
+
+  .welcome-screen-login-register-card-close {
+    display: flex;
+  }
+
+  .mobile-only {
+    display: flex;
+  }
+
+  .welcome-screen-login-register-card-login-wrapper, .welcome-screen-login-register-card-register-wrapper {
+    height: 100%;
+    padding: 64px 5% 32px;
+  }
+
+  .card-open {
+    height: 100%;
+  }
+}

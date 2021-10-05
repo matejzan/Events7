@@ -1,0 +1,42 @@
+<h1>EVENTS7</h1>
+<div 
+  class="dashboard-user-credentials"
+  *ngIf="userDisplayName"
+>
+  <p>Welcome, {{userDisplayName}}</p>
+</div>
+<div class="dashboard-navigation-links">
+  <a 
+    routerLink="events"
+    routerLinkActive="active"
+  >
+  <mat-icon 
+    svgIcon="events-icon"
+    aria-hidden="false"
+  >
+  </mat-icon>
+    Events
+  </a>
+  <a 
+    routerLink="about"
+    routerLinkActive="active"
+  >
+  <mat-icon 
+    svgIcon="info-icon"
+    aria-hidden="false"
+  >
+  </mat-icon>
+    About
+  </a>
+  <a 
+    routerLink="code"
+    routerLinkActive="active"
+  >
+  <mat-icon 
+    svgIcon="code-icon"
+    aria-hidden="false"
+  >
+  </mat-icon>
+    Code
+  </a>
+</div>
