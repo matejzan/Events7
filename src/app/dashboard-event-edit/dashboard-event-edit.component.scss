@@ -261,7 +261,7 @@
 }
 
 .dashboard-events-edit-form-related-events-card-types {
-  width: 30%;
+  width: 50%;
   display: flex;
   justify-content: flex-end;
 }
@@ -329,5 +329,13 @@
 
   .dashboard-events-loader {
     margin-left: -16px;
+  }
+
+  .dashboard-events-edit-form-related-events-card-name {
+    width: 50%;
+
+    h2 {
+      font-size: 16px;
+    }
   }
 }
