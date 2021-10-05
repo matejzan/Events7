@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { collection, query, getDocs, getFirestore, DocumentData, where } from "firebase/firestore";
+import { collection, query, getDocs, getFirestore, DocumentData, where, orderBy } from "firebase/firestore";
 import { Router } from '@angular/router';
 
 const db = getFirestore();
@@ -26,8 +26,6 @@ export class DashboardEventsViewComponent implements OnInit {
 
   chosenEventType = 'all';
 
-  filterEventTypes = this.eventTypes;
-
   openDeleteEventDialog(event: DocumentData) {
     this.eventToDelete = event;
     this.deleteEventDialogOpen = true;
@@ -48,18 +46,16 @@ export class DashboardEventsViewComponent implements OnInit {
 
   showEventType(type: string) {
     this.chosenEventType = type;
-    if (type === 'all') { 
-      this.filterEventTypes = this.eventTypes;
-    } else {
-      this.filterEventTypes = [type];
-    }
     this.getData();
   }
   
   async getData() {
     this.fetchingEvents = true;
     this.fetchedEvents = [];
-    let q = query(collection(db, "Events"), where("type", "in", this.filterEventTypes));
+    let q = query(collection(db, "Events"), orderBy("priority", "desc"));
+    if (this.chosenEventType !== 'all') {
+      q = query(collection(db, "Events"), where("type", "==", this.chosenEventType));
+    }
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       this.fetchedEvents.push(doc.data());
