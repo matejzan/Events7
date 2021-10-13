@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard-back-to-events',
-  templateUrl: './dashboard-back-to-events.component.html',
-  styleUrls: ['./dashboard-back-to-events.component.scss']
+  selector: 'app-dashboard-back',
+  templateUrl: './dashboard-back.component.html',
+  styleUrls: ['./dashboard-back.component.scss']
 })
-export class DashboardBackToEventsComponent {
+export class DashboardbackComponent {
 
   constructor(private router: Router) {}
 

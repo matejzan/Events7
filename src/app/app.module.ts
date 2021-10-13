@@ -19,9 +19,10 @@ import { DialogComponent } from './dialog/dialog.component';
 import { DashboardEventDetailsComponent } from './dashboard-event-details/dashboard-event-details.component';
 import { DashboardEventCardComponent } from './dashboard-event-card/dashboard-event-card.component';
 import { DashboardEventDeleteDialogComponent } from './dashboard-event-delete-dialog/dashboard-event-delete-dialog.component';
-import { DashboardBackToEventsComponent } from './dashboard-back-to-events/dashboard-back-to-events.component';
+import { DashboardbackComponent } from './dashboard-back/dashboard-back.component';
 import { AboutComponent } from './about/about.component';
 import { GithubComponent } from './github/github.component';
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { GithubComponent } from './github/github.component';
     DashboardEventDetailsComponent,
     DashboardEventCardComponent,
     DashboardEventDeleteDialogComponent,
-    DashboardBackToEventsComponent,
+    DashboardbackComponent,
     AboutComponent,
     GithubComponent,
   ],
