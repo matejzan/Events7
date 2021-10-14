@@ -1,4 +1,5 @@
 <h2>Events</h2>
+{{loading$ | async}}
 <p>See all the events you and your team have created by now! To see all of the event's details click on the card below.</p>
 <div class="dashboard-events-filters">
   <div class="dashboard-events-filters-sort">
@@ -27,7 +28,7 @@
 </div>
 <div 
   class="dashboard-events-loader"
-  *ngIf="fetchingEvents"
+  *ngIf="loading$ | async"
 >
   <mat-spinner 
       diameter="40" 
@@ -43,10 +44,10 @@
     <b routerLink="../add-new-event">Create some!</b>
   </p>
   <p *ngIf="fetchedEvents.length||chosenEventType!=='all'">
-    Showing {{fetchedEvents.length}} {{fetchedEvents.length === 1 ? 'result' : 'results'}}
+    Showing {{eventsLen$ | async}} {{(eventsLen$ | async) === 1 ? 'result' : 'results'}}
   </p>
   <app-dashboard-event-card 
-    *ngFor="let event of fetchedEvents"
+    *ngFor="let event of events$ | async"
     [event]=event
     [cardType]="'eventFull'"
     (openDeleteEventDialog)=openDeleteEventDialog(event)

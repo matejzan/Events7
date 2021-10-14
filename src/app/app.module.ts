@@ -23,6 +23,7 @@ import { DashboardbackComponent } from './dashboard-back/dashboard-back.componen
 import { AboutComponent } from './about/about.component';
 import { GithubComponent } from './github/github.component';
 import { StoreModule } from '@ngrx/store';
+import { eventsReducer } from './state/events.reducer';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { StoreModule } from '@ngrx/store';
     MatIconModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    StoreModule.forRoot({ events: eventsReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent]

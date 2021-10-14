@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { collection, query, getDocs, getFirestore, DocumentData, where, orderBy } from "firebase/firestore";
 import { Router } from '@angular/router';
+import { fetchEventsService } from '../dashboard-events/event.service';
+import { fetchedEvents, filteredEvents } from '../state/events.actions';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../state/app.state';
+import { selectAllEvents, selectEventsLength, selectLoadingEvents } from '../state/events.selector';
 
 const db = getFirestore();
 
@@ -12,11 +17,17 @@ const db = getFirestore();
 
 export class DashboardEventsViewComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private eventsService: fetchEventsService, private store: Store<AppState>) { }
+
+  events$ = this.store.pipe(select(selectAllEvents));
+
+  eventsLen$ = this.store.pipe(select(selectEventsLength));
+
+  loading$ = this.store.pipe(select(selectLoadingEvents));
 
   fetchedEvents: DocumentData[] = [];
 
-  fetchingEvents!: boolean;
+  fetchingEvents = false;
 
   deleteEventDialogOpen = false;
 
@@ -34,7 +45,7 @@ export class DashboardEventsViewComponent implements OnInit {
   eventDeleteDialogClosed(deletedDocument: Boolean) {
     this.deleteEventDialogOpen = false;
     if (deletedDocument) {
-      this.getData();
+      //this.getData();
     }
   }
 
@@ -46,24 +57,18 @@ export class DashboardEventsViewComponent implements OnInit {
 
   showEventType(type: string) {
     this.chosenEventType = type;
-    this.getData();
-  }
-  
-  async getData() {
-    this.fetchingEvents = true;
-    this.fetchedEvents = [];
-    let q = query(collection(db, "Events"), orderBy("priority", "desc"));
-    if (this.chosenEventType !== 'all') {
-      q = query(collection(db, "Events"), where("type", "==", this.chosenEventType));
-    }
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      this.fetchedEvents.push(doc.data());
-    });
-    this.fetchingEvents = false;
+    this.eventsService
+      .getFilteredEvents(this.chosenEventType)
+      .subscribe((events) =>
+        this.store.dispatch(filteredEvents({ events })),
+      );
   }
 
   ngOnInit(): void {
-    this.getData();
+    this.eventsService
+      .getEvents()
+      .subscribe((events) =>
+        this.store.dispatch(fetchedEvents({ events })),
+      );
   }
 }
